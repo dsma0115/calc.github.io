@@ -1,22 +1,20 @@
-let calculations = [];
-let results = [];
+let calculations1 = [];
+let results1 = [];
+let calculations2 = [];
+let results2 = [];
 
-while (true) {
-    let x = prompt("Enter the first number (x):");
-    if (x === null) break; 
+function calculate(calculatorNumber) {
+    // Reset results for each calculation
+    if (calculatorNumber === 1) {
+        results1 = []; // Reset results for Calculator 1
+    } else {
+        results2 = []; // Reset results for Calculator 2
+    }
 
-    let y = prompt("Enter the second number (y):");
-    if (y === null) break; 
-
-    let operator = prompt("Enter an operator (+, -, *, /, %):");
-    if (operator === null) break;  
-
-
-    x = parseFloat(x);
-    y = parseFloat(y);
-
+    let x = parseFloat(document.getElementById(`number1_${calculatorNumber}`).value);
+    let y = parseFloat(document.getElementById(`number2_${calculatorNumber}`).value);
+    let operator = document.getElementById(`operator${calculatorNumber}`).value;
     let result;
-
 
     if (isNaN(x) || isNaN(y)) {
         result = "Error: Non-numeric input";
@@ -42,27 +40,45 @@ while (true) {
         }
     }
 
-
-    calculations.push({ x, operator, y, result });
-    if (typeof result === "number") {
-        results.push(result);  
+    if (calculatorNumber === 1) {
+        calculations1.push({ x, operator, y, result });
+        if (typeof result === "number") {
+            results1.push(result);
+        }
+        displayResults(calculatorNumber, x, operator, y, result);
+        displaySummary(calculatorNumber, results1);
+    } else {
+        calculations2.push({ x, operator, y, result });
+        if (typeof result === "number") {
+            results2.push(result);
+        }
+        displayResults(calculatorNumber, x, operator, y, result);
+        displaySummary(calculatorNumber, results2);
     }
-
-
-    document.write("<table>");
-    document.write("<tr><th>Number 1</th><th>Operator</th><th>Number 2</th><th>Result</th></tr>");
-    document.write(`<tr><td>${x}</td><td>${operator}</td><td>${y}</td><td>${result}</td></tr>`);
-    document.write("</table>");
 }
 
+function displayResults(calculatorNumber, x, operator, y, result) {
+    const resultDiv = document.getElementById(`result${calculatorNumber}`);
+    resultDiv.innerHTML += `<table>
+        <tr><th>Number 1</th><th>Operator</th><th>Number 2</th><th>Result</th></tr>
+        <tr><td>${x}</td><td>${operator}</td><td>${y}</td><td>${result}</td></tr>
+    </table>`;
+}
 
-if (results.length > 0) {
-    let min = Math.min(...results);
-    let max = Math.max(...results);
-    let total = results.reduce((a, b) => a + b, 0);
-    let avg = total / results.length;
+function displaySummary(calculatorNumber, results) {
+    const summaryDiv = document.getElementById(`summary${calculatorNumber}`);
+    summaryDiv.innerHTML = ""; // Clear previous summary
 
-    document.write("<table>");
-    document.write("<tr><th>Minimum</th><th>Maximum</th><th>Average</th><th>Total</th></tr>");
-    document.write(`<tr><td>${min}</td><td>${max}</td><td>${avg}</td><td>${total}</td></tr>`);
-    document.write("</table>");
+    if (results.length > 0) {
+        let min = Math.min(...results);
+        let max = Math.max(...results);
+        let total = results.reduce((a, b) => a + b, 0);
+        let avg = total / results.length;
+
+        // Using document.write structure
+        summaryDiv.innerHTML += "<table>";
+        summaryDiv.innerHTML += "<tr><th>Minimum</th><th>Maximum</th><th>Average</th><th>Total</th></tr>";
+        summaryDiv.innerHTML += `<tr><td>${min}</td><td>${max}</td><td>${avg}</td><td>${total}</td></tr>`;
+        summaryDiv.innerHTML += "</table>";
+    }
+}
