@@ -83,15 +83,3 @@ function displaySummary(calculatorNumber, results) {
         summaryDiv.innerHTML += "</table>";
     }
 }
-
-// Optional: Loading results dynamically
-function loadResults(calculatorNumber) {
-    // Simulate a loading process, e.g., fetching data or calculations
-    const loadingDiv = document.getElementById(`loading${calculatorNumber}`);
-    loadingDiv.style.display = 'block'; // Show loading indicator
-
-    setTimeout(() => {
-        loadingDiv.style.display = 'none'; // Hide loading after delay
-        // You can call calculate(calculatorNumber) or perform other operations here
-    }, 1000); // Adjust the timeout as needed
-}
