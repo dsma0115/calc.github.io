@@ -16,6 +16,7 @@ function calculate(calculatorNumber) {
     let operator = document.getElementById(`operator${calculatorNumber}`).value;
     let result;
 
+    // Validate input
     if (isNaN(x) || isNaN(y)) {
         result = "Error: Non-numeric input";
     } else {
@@ -40,6 +41,7 @@ function calculate(calculatorNumber) {
         }
     }
 
+    // Store results and display
     if (calculatorNumber === 1) {
         calculations1.push({ x, operator, y, result });
         if (typeof result === "number") {
@@ -75,10 +77,21 @@ function displaySummary(calculatorNumber, results) {
         let total = results.reduce((a, b) => a + b, 0);
         let avg = total / results.length;
 
-        // Using document.write structure
         summaryDiv.innerHTML += "<table>";
         summaryDiv.innerHTML += "<tr><th>Minimum</th><th>Maximum</th><th>Average</th><th>Total</th></tr>";
         summaryDiv.innerHTML += `<tr><td>${min}</td><td>${max}</td><td>${avg}</td><td>${total}</td></tr>`;
         summaryDiv.innerHTML += "</table>";
     }
+}
+
+// Optional: Loading results dynamically
+function loadResults(calculatorNumber) {
+    // Simulate a loading process, e.g., fetching data or calculations
+    const loadingDiv = document.getElementById(`loading${calculatorNumber}`);
+    loadingDiv.style.display = 'block'; // Show loading indicator
+
+    setTimeout(() => {
+        loadingDiv.style.display = 'none'; // Hide loading after delay
+        // You can call calculate(calculatorNumber) or perform other operations here
+    }, 1000); // Adjust the timeout as needed
 }
