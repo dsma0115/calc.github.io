@@ -1,65 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Calculators</title>
-    <style>
-        table {
-            width: 50%;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-        table, th, td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .container {
-            text-align: center;
-            margin: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h2 class="container">Simple JavaScript Calculators</h2>
+<div>
+    <input type="number" id="number1_1" placeholder="Number 1">
+    <input type="number" id="number2_1" placeholder="Number 2">
+    <select id="operator1">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <button onclick="calculate(1)">Calculate</button>
+    <div id="result1"></div>
+    <div id="summary1"></div>
+</div>
 
-    <div class="container">
-        <h3>Calculator 1</h3>
-        <input type="number" id="number1_1" placeholder="Enter first number" />
-        <input type="number" id="number2_1" placeholder="Enter second number" />
-        <select id="operator1">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-            <option value="%">%</option>
-        </select>
-        <button onclick="calculate(1)">Calculate</button>
-        <div id="result1"></div>
-        <div id="summary1"></div>
-    </div>
-
-    <div class="container">
-        <h3>Calculator 2</h3>
-        <input type="number" id="number1_2" placeholder="Enter first number" />
-        <input type="number" id="number2_2" placeholder="Enter second number" />
-        <select id="operator2">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-            <option value="%">%</option>
-        </select>
-        <button onclick="calculate(2)">Calculate</button>
-        <div id="result2"></div>
-        <div id="summary2"></div>
-    </div>
-
-    <script src="calculator.js"></script>
-</body>
-</html>
-
+<div>
+    <input type="number" id="number1_2" placeholder="Number 1">
+    <input type="number" id="number2_2" placeholder="Number 2">
+    <select id="operator2">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <button onclick="calculate(2)">Calculate</button>
+    <div id="result2"></div>
+    <div id="summary2"></div>
+</div>
